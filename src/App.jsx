@@ -2,7 +2,7 @@ import "./App.css";
 
 export default function App() {
   return (
-    <div className="App container">
+    <div className="App">
       <h1>
         Welcome to <code>cricket-scorecard</code>!
       </h1>
