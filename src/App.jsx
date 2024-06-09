@@ -1,11 +1,9 @@
-import "./App.css";
+import CricketScorecard from "./CricketScorecard";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>
-        Welcome to <code>cricket-scorecard</code>!
-      </h1>
+      <CricketScorecard />
     </div>
   );
 }
