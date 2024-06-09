@@ -8,17 +8,9 @@ export default function CricketScorecard({ battingTeamName, bowlingTeamName }) {
   const [ballsBowled, setBallsBowled] = useState([]);
   return (
     <div className="CricketScorecard">
-      <Batter
-        batterName={battingTeamName}
-        ballsFaced={ballsFaced}
-        setBallsFaced={setBallsFaced}
-      />
-      <Bowler
-        bowlerName={bowlingTeamName}
-        ballsBowled={ballsBowled}
-        setBallsBowled={setBallsBowled}
-      />
-      <Controls />
+      <Batter batterName={battingTeamName} ballsFaced={ballsFaced} />
+      <Bowler bowlerName={bowlingTeamName} ballsBowled={ballsBowled} />
+      <Controls setBallsFaced={setBallsFaced} setBallsBowled={setBallsBowled} />
     </div>
   );
 }
