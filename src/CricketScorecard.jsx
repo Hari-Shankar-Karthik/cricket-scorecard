@@ -13,7 +13,11 @@ export default function CricketScorecard({ battingTeamName, bowlingTeamName }) {
         ballsFaced={ballsFaced}
         setBallsFaced={setBallsFaced}
       />
-      <Bowler />
+      <Bowler
+        bowlerName={bowlingTeamName}
+        ballsBowled={ballsBowled}
+        setBallsBowled={setBallsBowled}
+      />
       <Controls />
     </div>
   );
