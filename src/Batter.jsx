@@ -1,3 +1,10 @@
-export default function Batter() {
-  return <div className="Batter">BATTER</div>;
+import getBatterStats from "./getBatterStats";
+
+export default function Batter({ batterName, ballsFaced, setBallsFaced }) {
+  const { runs, balls, fours, sixes, strikeRate } = getBatterStats(ballsFaced);
+  return (
+    <div className="Batter">
+      {batterName} - {runs} ({balls}) [4s {fours}, 6s {sixes}, SR {strikeRate}]
+    </div>
+  );
 }
