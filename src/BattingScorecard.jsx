@@ -1,4 +1,5 @@
 import Batter from "./Batter";
+import { getBattingTeamStats, convertToOvers } from "./utils";
 
 export default function BattingScorecard({
   battingTeamName,
@@ -6,10 +7,14 @@ export default function BattingScorecard({
   ballsFaced,
   activeBatter,
 }) {
-  // TODO: ballsFaced is currently for one batter only, split it into two dimensions
+  const { teamRuns, teamBalls } = getBattingTeamStats(ballsFaced);
+  const { completedOvers, oddBalls } = convertToOvers(teamBalls);
   return (
     <div className="BattingScorecard">
-      <div className="batting-team-name">{battingTeamName}</div>
+      <div className="batting-team-name">
+        {battingTeamName} - {teamRuns} ({completedOvers}.{oddBalls})
+        {battingTeamName}
+      </div>
       <div className="batter-list">
         {batterList.map((batter, index) => (
           <Batter

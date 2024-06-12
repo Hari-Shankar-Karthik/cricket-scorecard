@@ -1,4 +1,4 @@
-import getBowlerStats from "./getBowlerStats";
+import { getBowlerStats } from "./utils";
 
 export default function Bowler({ bowlerName, ballsBowled }) {
   const { overs, maidens, runs, economyRate } = getBowlerStats(ballsBowled);
