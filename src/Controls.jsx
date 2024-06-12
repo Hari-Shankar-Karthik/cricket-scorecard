@@ -1,6 +1,6 @@
 import ControlButton from "./ControlButton";
 
-export default function Controls({ setBallsFaced, setBallsBowled }) {
+export default function Controls({ buttonOnClick }) {
   const ballOutcomes = [0, 1, 2, 3, 4, 6];
   return (
     <div className="Controls">
@@ -8,10 +8,7 @@ export default function Controls({ setBallsFaced, setBallsBowled }) {
         <ControlButton
           key={ball}
           buttonText={`+${ball}`}
-          buttonOnClick={() => {
-            setBallsFaced((ballsFaced) => [...ballsFaced, ball]);
-            setBallsBowled((ballsBowled) => [...ballsBowled, ball]);
-          }}
+          buttonOnClick={() => buttonOnClick(ball)}
         />
       ))}
     </div>
