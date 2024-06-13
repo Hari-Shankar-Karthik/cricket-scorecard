@@ -17,6 +17,8 @@ export default function getStats(ballRecord) {
   }));
   for (const ballBowled of ballRecord) {
     const { batter, bowler, runs } = ballBowled;
+    team.runs += runs;
+    team.balls++;
     batters[batter].runs += runs;
     batters[batter].balls++;
     if (runs === 4) {
