@@ -30,7 +30,12 @@ export default function CricketScorecard({
         bowlingTeamName={bowlingTeamName}
         bowlingStats={bowlingStats}
       />
-      <Controls />
+      <Controls
+        ballRecord={ballRecord}
+        setBallRecord={setBallRecord}
+        activePlayers={activePlayers}
+        setActivePlayers={setActivePlayers}
+      />
     </div>
   );
 }
