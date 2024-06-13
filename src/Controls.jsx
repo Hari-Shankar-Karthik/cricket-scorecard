@@ -6,12 +6,12 @@ export default function Controls({
   activePlayers,
   setActivePlayers,
 }) {
-  const { strikeBatter, nonStrikeBatter } = activePlayers;
-  const ballOutcomes = [1, 2, 3, 4, 6];
+  const { strikeBatter, bowler } = activePlayers;
+  const ballOutcomes = [0, 1, 2, 3, 4, 6];
   const addRuns = (ball) => {
     setBallRecord((ballRecord) => [
       ...ballRecord,
-      { batter: strikeBatter, runs: ball },
+      { batter: strikeBatter, bowler, runs: ball },
     ]);
     const isEndOfOver = ballRecord.length % 6 === 5;
     if ((ball % 2 === 1) ^ isEndOfOver) {
@@ -28,6 +28,7 @@ export default function Controls({
       <div className="control-button-display">
         {ballOutcomes.map((ball) => (
           <ControlButton
+            key={ball}
             buttonText={`+${ball}`}
             buttonOnClick={() => addRuns(ball)}
           />

@@ -9,7 +9,7 @@ export default function Batter({ batterName, batterStats, batterStatus }) {
   return (
     <div className="Batter active">
       {batterName}
-      {batterStatus && "*"} - {runs}({balls}) [4s {fours}, 6s {sixes}, SR{" "}
+      {batterStatus && "*"} - {runs}({balls}b) [4s {fours}, 6s {sixes}, SR{" "}
       {strikeRate.toFixed(1)}]
     </div>
   );

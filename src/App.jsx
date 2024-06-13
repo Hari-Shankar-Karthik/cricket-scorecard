@@ -8,6 +8,7 @@ export default function App() {
         battingTeamName="IND"
         batterList={squads["IND"]}
         bowlingTeamName="AUS"
+        bowlerList={squads["AUS"]}
       />
     </div>
   );
