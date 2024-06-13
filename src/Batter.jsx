@@ -1,15 +1,16 @@
-import { getBatterStats } from "./utils";
+import "./Batter.css";
 
-export default function Batter({ batterName, ballsFaced, isActive }) {
-  if (ballsFaced === null) {
+export default function Batter({ batterName, batterStats, batterStatus }) {
+  if (batterStatus === null) {
     return <div className="Batter">{batterName} - Yet to bat</div>;
   }
-  const { runs, balls, fours, sixes, strikeRate } = getBatterStats(ballsFaced);
+  const { runs, balls, fours, sixes } = batterStats;
+  const strikeRate = balls === 0 ? 0 : runs / balls;
   return (
-    <div className="Batter">
+    <div className="Batter active">
       {batterName}
-      {isActive && "*"} - {runs} ({balls}) [4s {fours}, 6s {sixes}, SR{" "}
-      {strikeRate.toFixed(1)}]
+      {batterStatus && "*"} - {runs}({balls}) [4s {fours}, 6s {sixes}, SR{" "}
+      {strikeRate}]
     </div>
   );
 }

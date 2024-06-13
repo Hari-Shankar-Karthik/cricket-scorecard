@@ -1,38 +1,36 @@
 import { useState } from "react";
-import Bowler from "./Bowler";
-import Controls from "./Controls";
 import BattingScorecard from "./BattingScorecard";
+import BowlingScorecard from "./BowlingScorecard";
+import Controls from "./Controls";
+import getStats from "./getStats";
 
 export default function CricketScorecard({
   battingTeamName,
   batterList,
   bowlingTeamName,
 }) {
-  const [activeBatter, setActiveBatter] = useState(0);
-  const [ballsFaced, setBallsFaced] = useState(() =>
-    Array.from({ length: 11 }, (_, i) => (i === activeBatter ? [] : null))
-  );
-  const [ballsBowled, setBallsBowled] = useState([]);
-  const recordBall = (activeBatter) => {
-    return (ball) => {
-      setBallsFaced((ballsFaced) =>
-        ballsFaced.map((balls, index) =>
-          activeBatter === index ? [...balls, ball] : balls
-        )
-      );
-      setBallsBowled((ballsBowled) => [...ballsBowled, ball]);
-    };
-  };
+  // balls: [{batter, bowler, runs}]
+  const [ballRecord, setBallRecord] = useState([]);
+  const [activePlayers, setActivePlayers] = useState({
+    strikeBatter: 0,
+    nonStrikeBatter: 1,
+    // bowler: null, // TODO
+  });
+  const { battingStats, bowlingStats } = getStats(ballRecord);
   return (
     <div className="CricketScorecard">
       <BattingScorecard
         battingTeamName={battingTeamName}
         batterList={batterList}
-        ballsFaced={ballsFaced}
-        activeBatter={activeBatter}
+        battingStats={battingStats}
+        strikeBatter={activePlayers.strikeBatter}
+        nonStrikeBatter={activePlayers.nonStrikeBatter}
       />
-      <Bowler bowlerName={bowlingTeamName} ballsBowled={ballsBowled} />
-      <Controls buttonOnClick={recordBall(activeBatter)} />
+      <BowlingScorecard
+        bowlingTeamName={bowlingTeamName}
+        bowlingStats={bowlingStats}
+      />
+      <Controls />
     </div>
   );
 }

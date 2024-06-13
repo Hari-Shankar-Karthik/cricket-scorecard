@@ -1,30 +1,34 @@
 import Batter from "./Batter";
-import { getBattingTeamStats, convertToOvers } from "./utils";
+import convertToOvers from "./convertToOvers";
 
 export default function BattingScorecard({
   battingTeamName,
   batterList,
-  ballsFaced,
-  activeBatter,
+  battingStats,
+  strikeBatter,
+  nonStrikeBatter,
 }) {
-  const { teamRuns, teamBalls } = getBattingTeamStats(ballsFaced);
-  const { completedOvers, oddBalls } = convertToOvers(teamBalls);
+  const { team, batters } = battingStats;
+  const teamOvers = convertToOvers(team.balls);
+  const batterDisplay = [];
+  for (let i = 0; i < 11; i++) {
+    batterDisplay.push(
+      <Batter
+        key={i}
+        batterName={batterList[i]}
+        batterStats={batters[i]}
+        batterStatus={
+          i === strikeBatter ? true : i === nonStrikeBatter ? false : null
+        }
+      />
+    );
+  }
   return (
     <div className="BattingScorecard">
-      <div className="batting-team-name">
-        {battingTeamName} - {teamRuns} ({completedOvers}.{oddBalls})
-        {battingTeamName}
+      <div className="batting-team-display">
+        {battingTeamName} - {team.runs} ({teamOvers})
       </div>
-      <div className="batter-list">
-        {batterList.map((batter, index) => (
-          <Batter
-            key={index}
-            batterName={batter}
-            ballsFaced={ballsFaced[index]}
-            isActive={activeBatter === index}
-          />
-        ))}
-      </div>
+      <div className="batter-display">{batterDisplay}</div>
     </div>
   );
 }
